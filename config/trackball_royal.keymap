@@ -20,7 +20,6 @@
         RC(0,0) RC(0,1)
         RC(0,5) RC(0,4)
         >;
-
     };
 
     combos {
@@ -39,41 +38,59 @@
     };
 
     behaviors {
+        adj1: adj1 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "ADJ1";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0>, <&bt BT_CLR>;
+        };
+
+        adj2: adj2 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "ADJ2";
+            #binding-cells = <0>;
+            bindings = <&bt BT_NXT>, <&bt BT_CLR_ALL>;
+        };
+
         scroll_latch: scroll_latch {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             tapping-term-ms = <200>;
             flavor = "hold-preferred";
-            bindings = <&mo 1>, <&tog 1>;   // hold → скролл, tap → залипание
+            bindings = <&mo>, <&tog>;
         };
+
         sniper_latch: sniper_latch {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             tapping-term-ms = <200>;
             flavor = "hold-preferred";
-            bindings = <&mo 2>, <&tog 2>;
+            bindings = <&mo>, <&tog>;
         };
     };
 
-macros {
-        dbl_click: dbl_click {          // двойной клик одной кнопкой
+    macros {
+        dbl_click: dbl_click {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <40>;
             tap-ms = <20>;
             bindings = <&mkp LCLK>, <&mkp LCLK>;
         };
-        drag_on: drag_on {              // «прилипшая» ЛКМ
+
+        drag_on: drag_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &mkp LCLK>;
         };
+
         drag_off: drag_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_release &mkp LCLK>;
         };
     };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -124,8 +141,7 @@ macros {
     input-processors =
         <&sensor_rotation>,
         <&zip_x_scaler 1 1>,
-        <&zip_y_scaler 1 2>
-};
+        <&zip_y_scaler 1 2>;
 
     scroller {
         layers = <1>;
