@@ -51,8 +51,41 @@
             #binding-cells = <0>;
             bindings = <&bt BT_NXT>, <&bt BT_CLR_ALL>;
         };
+        scroll_latch: scroll_latch {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            flavor = "hold-preferred";
+            bindings = <&mo 1>, <&tog 1>;   // hold → скролл, tap → залипание
+        };
+        sniper_latch: sniper_latch {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            flavor = "hold-preferred";
+            bindings = <&mo 2>, <&tog 2>;
+        };
     };
 
+macros {
+        dbl_click: dbl_click {          // двойной клик одной кнопкой
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <20>;
+            bindings = <&mkp LCLK>, <&mkp LCLK>;
+        };
+        drag_on: drag_on {              // «прилипшая» ЛКМ
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &mkp LCLK>;
+        };
+        drag_off: drag_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_release &mkp LCLK>;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
@@ -92,7 +125,7 @@
             compatible = "zmk,input-processor-sensor-rotation";
             status = "okay";
             #input-processor-cells = <0>;
-            rotation-angle = <5>;
+            rotation-angle = <10>;
         };
     };
 };
