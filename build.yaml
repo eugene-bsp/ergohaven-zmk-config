@@ -148,8 +148,8 @@ include:
     shield: trackball
     keymap: trackball_royal
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_KEYBOARD_NAME=\"EH\ TB\ Royal\" -DCONFIG_PMW3610_INVERT_X=y -DCONFIG_PMW3610_INVERT_Y=y -DCONFIG_ZMK_POINTING_SMOOTH_SCROLLING=y -DCONFIG_PMW3610_REPORT_INTERVAL_MIN=8
-    artifact-name: trackball_royal-ergohaven-zmk
+       cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_KEYBOARD_NAME=\"EH\ TB\ Royal\" -DCONFIG_PMW3610_INVERT_X=y -DCONFIG_PMW3610_INVERT_Y=y -DCONFIG_ZMK_POINTING_SMOOTH_SCROLLING=y -DCONFIG_PMW3610_REPORT_INTERVAL_MIN=8
+       artifact-name: trackball_royal-ergohaven-zmk
 
   - board: ergohaven
     shield: settings_reset
